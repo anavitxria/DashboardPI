@@ -5,107 +5,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dash.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>dashboard</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
 </head>
 
 <body>
 
     <aside class="navbar">
         <div class="sidebar">
-            <img src="image/logo.svg" alt="logo">
-            <h2>codingDash</h2>
+            <img src="image/logo_1-removebg-preview 1.svg" alt="logo">
+            <h2>Queijo no Ponto</h2>
         </div>
         <ul class="link">
             <h4>
-                <span>Main Menu</span>
+                <span> Menu</span>
             </h4>
+
+            <div class="menu_separator"></div>
+
             <li>
                 <a href="#"><span class="material-symbols-outlined">
                         dashboard
-                    </span>Dashboard</a>
+                    </span>Salas de maturação</a>
             </li>
 
             <li>
                 <a href="#"><span class="material-symbols-outlined">
-                    overview
-                    </span>Overview</a>
+                        overview
+                    </span>Histórico</a>
             </li>
 
             <li>
                 <a href="#"><span class="material-symbols-outlined">
                         monitoring
-                    </span>Analytic</a>
+                    </span>Gráficos</a>
             </li>
 
             <h4>
                 <span>General</span>
             </h4>
 
+            <div class="menu_separator"></div>
+
             <li>
                 <a href="#"><span class="material-symbols-outlined">
-                        folder
-                    </span>Projects</a>
+                        home
+                    </span>Home</a>
             </li>
 
             <li>
                 <a href="#"><span class="material-symbols-outlined">
                         groups
-                    </span>Groups</a>
-            </li>
-
-            <li>
-                <a href="#"><span class="material-symbols-outlined">
-                        move_up
-                    </span>Transfer</a>
-            </li>
-
-            <li>
-                <a href="#"><span class="material-symbols-outlined">
-                        flag
-                    </span>All reports</a>
-            </li>
-
-            <li>
-                <a href="#"><span class="material-symbols-outlined">
-                        notifications_active
-                    </span>Notifications</a>
+                    </span>Equipe</a>
             </li>
 
             <h4>
                 <span>Account</span>
             </h4>
 
-            <li>
-                <a href="#"><span class="material-symbols-outlined">
-                        account_circle
-                    </span>Profile</a>
-            </li>
 
             <li>
                 <a href="#"><span class="material-symbols-outlined">
-                        settings
-                    </span>Settings</a>
+                        account_circle
+                    </span>Perfil</a>
             </li>
 
             <li>
                 <a href="#"><span class="material-symbols-outlined">
                         logout
-                    </span>Logout</a>
+                    </span>Sair</a>
             </li>
         </ul>
+
         <div class="user-account">
             <div class="user-profile">
-                <img src="image/usuario.png" alt="usuario">
+                <img src="image/usuario.png" alt="usuario" />
                 <div class="user">
                     <h3>Usúario</h3>
                     <span>Produtor</span>
                 </div>
             </div>
         </div>
+
     </aside>
 
-
+    <!--    
+            <div style="width: 50%;">
+                <canvas id="sensorTemperatura"></canvas>
+            </div>
+            <div style="width: 50%;">
+                <canvas id="sensorUmidade"></canvas>
+            </div>
+        </div>
+    -->
 </body>
+
+<script>
+    var sensorTemperatura = new Chart(document.getElementById('sensorTemperatura').getContext('2d'), {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Temperatura',
+                borderColor: '#63B1BC',
+                backgroundColor: '#ED145B'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(%)'
+                    },
+                    beginAtZero: true,
+                },
+            },
+        }
+    });
+
+    var sensorUmidade = new Chart(document.getElementById('sensorUmidade').getContext('2d'), {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Umidade',
+                borderColor: '#63B1BC',
+                backgroundColor: '#0762C8'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(0-1)'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var paginacao = {};
+    var tempo = {};
+
+    function obterDados(grafico, endpoint) {
+        fetch('http://localhost:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                }
+                if (tempo[endpoint] == null) {
+                    tempo[endpoint] = 0;
+                }
+
+                var ultimaPaginacao = paginacao[endpoint];
+                paginacao[endpoint] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+
+                valores.forEach((valor) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+
+                    grafico.data.labels.push(tempo[endpoint]++);
+                    grafico.data.datasets[0].data.push(parseFloat(valor));
+                    grafico.update();
+                });
+            })
+            .catch(error => console.error('Erro ao obter dados:', error));
+    }
+
+    setInterval(() => {
+        obterDados(sensorTemperatura, 'temperatura');
+        obterDados(sensorUmidade, 'umidade');
+    }, 1000);
+
+</script>
 
 </html>
