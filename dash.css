@@ -8,52 +8,62 @@
 }
 
 body {
-    background: rgb(255, 255, 255);
     min-height: 100vh;
+    background-color: white;
 }
 
-.navbar {
+.sidebar {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     width: 85px;
-    background: rgb(70, 27, 2);
-    padding: 25px 20px;
-    transition: all 0.1s ease;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    background-color: rgb(98, 52, 0);
+    padding: 25px 20px;
+    transition: all 0.4s ease;
 }
 
-.navbar:hover {
+.sidebar:hover {
     width: 260px;
 }
 
-
-.navbar:hover .link .menu_separator {
-    transition-delay: 0s;
-    transform: scaleX(0);
-}
-
-.sidebar {
+.sidebar-header {
     display: flex;
     align-items: center;
 }
 
-.sidebar img {
+.sidebar-header img {
     width: 42px;
     border-radius: 50%;
 }
 
-.sidebar h2 {
+.sidebar-header h2 {
     font-size: 1.25rem;
     font-weight: 600;
     color: white;
     margin-left: 23px;
 }
 
-.link h4 {
+.sidebar-links {
+    list-style: none;
+    margin-top: 20px;
+    height: 80%;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.sidebar-links h4 span {
+    opacity: 0;
+}
+
+.sidebar:hover .sidebar-links h4 span {
+    opacity: 1;
+}
+
+.sidebar-links h4 {
     color: white;
     font-weight: 500;
     margin: 10px 0;
@@ -61,41 +71,7 @@ body {
     position: relative;
 }
 
-.link {
-    list-style: none;
-    margin-top: 20px;
-    height: 80%; 
-    overflow-y: auto;
-    scrollbar-width: none;
-}
-
-.link h4 span {
-    opacity: 0;
-}
-
-.navbar:hover .link h4 span {
-    opacity: 1;
-}
-
-.link li a {
-    display: flex;
-    align-items: center;
-    gap: 0 20px;
-    color: cornsilk;
-    font-weight: 500;
-    padding: 15px 10px;
-    white-space: nowrap;
-    text-decoration: none;
-}
-
-
-.link li a:hover {
-    background: rgb(107, 106, 106);
-    color: white;
-    border-radius: 4px;
-}
-
-.link .menu_separator {
+.sidebar-links .menu-separator {
     position: absolute;
     left: 0;
     top: 50%;
@@ -103,10 +79,31 @@ body {
     height: 1px;
     transform: scaleX(1);
     transform: translateY(-50%);
-    background: rgb(255, 255, 90);
+    background-color: #b07600;
     transform-origin: right;
-    transition-duration: 0.2;
+    transition-duration: 0.2s;
+}
 
+.sidebar:hover .sidebar-links .menu-separator {
+    transition-delay: 0s;
+    transform: scaleX(0);
+}
+
+.sidebar-links li a {
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+    color: azure;
+    font-weight: 500;
+    padding: 15px 10px;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.sidebar-links li a:hover{
+    background-color: #7a4a09;
+    color: white;
+    border-radius: 4px;
 }
 
 .user-account {
@@ -116,38 +113,34 @@ body {
 }
 
 .user-account .user-profile {
-    color: rgb(255, 255, 255);
     display: flex;
     align-items: center;
+    color: white;
 }
 
 .user-profile img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    width: 42px;
+    border-radius: 100%;
+}
+
+.user-details {
+    margin-left: 23px;
+    white-space: nowerap;
 }
 
 .user-profile h3 {
     font-size: 1rem;
     font-weight: 600;
-
 }
 
 .user-profile span {
     font-size: 0.775rem;
-    font-weight: 500;
+    font-weight: 600;
     display: block;
     margin-top: 0;
-
 }
 
-.user {
-    margin-left: 23px;
-    white-space: nowrap;
-}
-
-
-.navbar:hover .user-account {
-    background: #ffffff2d;
+.sidebar:hover .user-account {
+    background-color: #7a4a09;
     border-radius: 4px;
 }
