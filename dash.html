@@ -125,38 +125,38 @@
             labels: [], // Horários fixos
             datasets: [
                 {
-                    label: 'Temperatura Atual (°C)',
+                    label: '',
                     borderColor: '#c59506',
                     fill: true,
                     data: [] // Dados dinâmicos de temperatura
                 },
-                // {
-                //     label: 'Média Ideal (°C)',
-                //     borderColor: 'green',
-                //     backgroundColor: 'green',
-                //     data: [10, 10, 10, 10, 10, 10], // Linha de referência para a média
-                //     borderDash: [10, 5],
-                //     fill: false,
-                //     borderWidth: 2
-                // },
-                // {
-                //     label: 'Mínima (°C)',
-                //     borderColor: 'red',
-                //     backgroundColor: 'red',
-                //     data: [7, 7, 7, 7, 7, 7], // Linha de referência para a mínima
-                //     borderDash: [10, 5],
-                //     fill: false,
-                //     borderWidth: 2
-                // },
-                // {
-                //     label: 'Máxima (°C)',
-                //     borderColor: 'red',
-                //     backgroundColor: 'red',
-                //     data: [14, 14, 14, 14, 14, 14], // Linha de referência para a máxima
-                //     borderDash: [10, 5],
-                //     fill: false,
-                //     borderWidth: 2
-                // }
+                {
+                    label: 'Média Ideal (°C)',
+                    borderColor: 'green',
+                    backgroundColor: 'green',
+                    data: [10, 10, 10, 10, 10, 10], // Linha de referência para a média
+                    borderDash: [10, 5],
+                    fill: false,
+                    borderWidth: 2
+                },
+                {
+                    label: 'Mínima (°C)',
+                    borderColor: 'red',
+                    backgroundColor: 'red',
+                    data: [7, 7, 7, 7, 7, 7], // Linha de referência para a mínima
+                    borderDash: [10, 5],
+                    fill: false,
+                    borderWidth: 2
+                },
+                {
+                    label: 'Máxima (°C)',
+                    borderColor: 'red',
+                    backgroundColor: 'red',
+                    data: [14, 14, 14, 14, 14, 14], // Linha de referência para a máxima
+                    borderDash: [10, 5],
+                    fill: false,
+                    borderWidth: 2
+                }
             ]
         },
         options: {
@@ -165,7 +165,7 @@
                 legend: {
                     labels: {
                         boxWidth: 40,
-                        color: 'white',
+                        color: 'black',
                         font: { size: 12 }
                     }
                 }
@@ -173,7 +173,7 @@
             scales: {
                 x: {
                     ticks: {
-                        color: 'white' // Cor dos rótulos do eixo X
+                        color: 'black' // Cor dos rótulos do eixo X
                     }
                 },
                 y: {
@@ -185,7 +185,7 @@
                         font: { size: 12 }
                     },
                     ticks: {
-                        color: 'white' // Cor dos rótulos do eixo Y
+                        color: 'black' // Cor dos rótulos do eixo Y
                     }
                 }
             }
@@ -199,38 +199,38 @@
             labels: [], // Horários fixos
             datasets: [
                 {
-                    label: 'Umidade Atual (%)',
+                    label: '',
                     borderColor: '#1f78b4',
                     fill: true,
                     data: [] // Dados dinâmicos de umidade
                 },
-                // {
-                //     label: 'Média Ideal (%)',
-                //     borderColor: 'green',
-                //     backgroundColor: 'green',
-                //     data: [80, 80, 80, 80, 80, 80], // Linha de referência para a média
-                //     borderDash: [10, 5],
-                //     fill: false,
-                //     borderWidth: 2
-                // },
-                // {
-                //     label: 'Mínima (%)',
-                //     borderColor: 'red',
-                //     backgroundColor: 'red',
-                //     data: [75, 75, 75, 75, 75, 75], // Linha de referência para a mínima
-                //     borderDash: [10, 5],
-                //     fill: false,
-                //     borderWidth: 2
-                // },
-                // {
-                //     label: 'Máxima (%)',
-                //     borderColor: 'red',
-                //     backgroundColor: 'red',
-                //     data: [95, 95, 95, 95, 95, 95], // Linha de referência para a máxima
-                //     borderDash: [10, 5],
-                //     fill: false,
-                //     borderWidth: 2
-                // }
+                {
+                    label: 'Média Ideal (%)',
+                    borderColor: 'green',
+                    backgroundColor: 'green',
+                    data: [80, 80, 80, 80, 80, 80], // Linha de referência para a média
+                    borderDash: [10, 5],
+                    fill: false,
+                    borderWidth: 2
+                },
+                {
+                    label: 'Mínima (%)',
+                    borderColor: 'red',
+                    backgroundColor: 'red',
+                    data: [75, 75, 75, 75, 75, 75], // Linha de referência para a mínima
+                    borderDash: [10, 5],
+                    fill: false,
+                    borderWidth: 2
+                },
+                {
+                    label: 'Máxima (%)',
+                    borderColor: 'red',
+                    backgroundColor: 'red',
+                    data: [95, 95, 95, 95, 95, 95], // Linha de referência para a máxima
+                    borderDash: [10, 5],
+                    fill: false,
+                    borderWidth: 2
+                }
             ]
         },
         options: {
@@ -240,7 +240,7 @@
                     labels: {
 
                         boxWidth: 40,
-                        color: 'white',
+                        color: 'black',
                         font: { size: 12 }
                     }
                 }
@@ -248,19 +248,19 @@
             scales: {
                 x: {
                     ticks: {
-                        color: 'white' // Cor dos rótulos do eixo X
+                        color: 'black' // Cor dos rótulos do eixo X
                     }
                 },
                 y: {
                     beginAtZero: false,
                     title: {
                         display: true,
-                        text: 'Umidade (%)',
-                        color: 'white',
+                        text: '',
+                        color: 'black',
                         font: { size: 12 }
                     },
                     ticks: {
-                        color: 'white' // Cor dos rótulos do eixo Y
+                        color: 'black' // Cor dos rótulos do eixo Y
                     }
                 }
             }
